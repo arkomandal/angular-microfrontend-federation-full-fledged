@@ -1,13 +1,25 @@
 {
-  "name": "ng-mf",
+  "name": "angular-microfrontend-federation-full-fledged",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run start:federation:host",
+    "start:host": "npm run start:federation:host",
+    "start:child1": "npm run start:federation:remote1",
+    "start:child2": "npm run start:federation:remote2",
+    "start:all": "npm run start:federation:all",
+    "start:federation:host": "ng serve angular-microfrontend-federation-full-fledged --port=4200",
+    "start:federation:remote1": "ng run child1:serve --port=4300",
+    "start:federation:remote2": "ng run child2:serve --port=4400",
+    "start:federation:child1": "npm run start:federation:remote1",
+    "start:federation:child2": "npm run start:federation:remote2",
+    "start:federation:all": "concurrently \"npm run start:federation:host\" \"npm run start:federation:remote1\" \"npm run start:federation:remote2\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ng-mf": "node dist/ng-mf/server/server.mjs"
+    "serve:ssr:angular-microfrontend-federation-full-fledged": "node dist/angular-microfrontend-federation-full-fledged/server/server.mjs",
+    "serve:ssr:child1": "node dist/child1/server/server.mjs",
+    "serve:ssr:child2": "node dist/child2/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -23,6 +35,9 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-architects/module-federation": "^20.0.0",
+    "@angular-architects/native-federation": "^20.3.1",
+    "@angular/animations": "^20.3.18",
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
@@ -30,10 +45,13 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@angular/ssr": "^20.3.5",
+    "@angular/ssr": "^20.3.20",
+    "@softarc/native-federation-node": "^2.0.10",
+    "es-module-shims": "^1.5.12",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular/build": "^20.3.5",
@@ -42,6 +60,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "concurrently": "^9.2.1",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

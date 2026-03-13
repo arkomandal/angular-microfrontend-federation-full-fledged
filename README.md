@@ -1,13 +1,49 @@
-# NgMf
+# Angular Microfrontend Federation Full Fledged
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+
+## Full federation local run
+
+Install dependencies first:
+
+```bash
+npm install
+```
+
+This workspace runs three apps for local federation-style development:
+
+- Host app: `http://localhost:4200`
+- Remote 1 app: `http://localhost:4300`
+- Remote 2 app: `http://localhost:4400`
+
+The host now uses dynamic remote component loading (no iframe embedding).
+
+Run all three together:
+
+```bash
+npm run start:federation:all
+```
+
+Run each app separately:
+
+```bash
+npm run start:federation:host
+npm run start:federation:remote1
+npm run start:federation:remote2
+```
+
+If you see `concurrently: command not found`, reinstall dev dependencies:
+
+```bash
+npm install --save-dev concurrently
+```
 
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+npm run start:federation:host
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.

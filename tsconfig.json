@@ -29,6 +29,18 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/child1/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/child1/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/child2/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/child2/tsconfig.spec.json"
     }
   ]
 }
